@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clothing Match</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-logo">
+      <span class="logo-icon">✦</span>
+      <h1>Clothing<span>Match</span></h1>
+    </div>
+    <nav class="header-actions">
+      <button class="btn-clear" onclick="clearMannequin()">Limpiar</button>
+      <button class="btn-save" onclick="saveOutfit()">Guardar look</button>
+    </nav>
+  </header>
+
+  <main class="app-layout">
+
+    <!-- SIDEBAR: CATÁLOGO -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>Mi Catálogo</h2>
+        <p>Sube tus prendas y arrástralas al maniquí</p>
+      </div>
+
+      <!-- Upload Zone -->
+      <div class="upload-zone" id="uploadZone">
+        <input type="file" id="fileInput" accept="image/*" multiple hidden />
+        <div class="upload-icon">📁</div>
+        <p class="upload-title">Subir prenda</p>
+        <p class="upload-hint">Haz clic o arrastra una imagen aquí</p>
+        <button class="btn-upload" onclick="document.getElementById('fileInput').click()">
+          Seleccionar imagen
+        </button>
+      </div>
+
+      <!-- Category filter -->
+      <div class="category-filter">
+        <button class="cat-btn active" data-cat="all">Todas</button>
+        <button class="cat-btn" data-cat="top">Top</button>
+        <button class="cat-btn" data-cat="bottom">Abajo</button>
+        <button class="cat-btn" data-cat="shoes">Calzado</button>
+        <button class="cat-btn" data-cat="acc">Acces.</button>
+      </div>
+
+      <!-- Catalog grid -->
+      <div class="catalog-grid" id="catalogGrid">
+        <p class="catalog-empty" id="catalogEmpty">Tu catálogo está vacío.<br/>¡Sube tu primera prenda!</p>
+      </div>
+    </aside>
+
+    <!-- MAIN: MANNEQUIN CANVAS -->
+    <section class="canvas-area">
+      <div class="canvas-label">Arrastra las prendas sobre el maniquí</div>
+
+      <div class="mannequin-wrapper" id="mannequinWrapper">
+        <!-- Mannequin SVG -->
+        <div class="mannequin-container" id="mannequinContainer">
+          <img src="mannequin.svg" alt="Maniquí" class="mannequin-img" id="mannequinImg" />
+          <!-- Dragged clothes will appear here -->
+          <div class="clothes-layer" id="clothesLayer"></div>
+        </div>
+
+        <!-- Drop hint overlay -->
+        <div class="drop-overlay" id="dropOverlay">
+          <div class="drop-hint">Suelta aquí la prenda</div>
+        </div>
+      </div>
+
+      <!-- Info bar -->
+      <div class="canvas-info">
+        <span id="itemCount">0 prendas en el look</span>
+        <button class="btn-undo" onclick="undoLast()" title="Deshacer última">↩ Deshacer</button>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: CONTROLS -->
+    <aside class="panel-right">
+      <div class="panel-section">
+        <h3>Prendas en el look</h3>
+        <ul class="outfit-list" id="outfitList">
+          <li class="outfit-empty">Sin prendas aún</li>
+        </ul>
+      </div>
+
+      <div class="panel-section">
+        <h3>Fondo del maniquí</h3>
+        <div class="bg-options">
+          <div class="bg-swatch active" data-bg="#FAFAFA" style="background:#FAFAFA;" onclick="setBg(this)"></div>
+          <div class="bg-swatch" data-bg="#1A1A1A" style="background:#1A1A1A;" onclick="setBg(this)"></div>
+          <div class="bg-swatch" data-bg="#E8D5C4" style="background:#E8D5C4;" onclick="setBg(this)"></div>
+          <div class="bg-swatch" data-bg="#C4D4E8" style="background:#C4D4E8;" onclick="setBg(this)"></div>
+          <div class="bg-swatch" data-bg="#D4E8C4" style="background:#D4E8C4;" onclick="setBg(this)"></div>
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <h3>Instrucciones</h3>
+        <ol class="instructions">
+          <li>Sube fotos de tus prendas con el botón de catálogo</li>
+          <li>Arrastra cualquier prenda desde el catálogo hacia el maniquí</li>
+          <li>Reposiciona las prendas ya colocadas arrastrándolas</li>
+          <li>Usa "Guardar look" para descargar la imagen</li>
+        </ol>
+      </div>
+
+      <div class="panel-section">
+        <h3>Etiqueta al subir</h3>
+        <div class="tag-form">
+          <label>Categoría de la próxima prenda:</label>
+          <select id="nextCategory">
+            <option value="top">Top / Camisa</option>
+            <option value="bottom">Pantalón / Falda</option>
+            <option value="shoes">Calzado</option>
+            <option value="acc">Accesorio</option>
+          </select>
+        </div>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
