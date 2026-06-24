@@ -646,3 +646,215 @@ html, body {
    DRAGGING STATE (global)
    ============================================================ */
 body.dragging-catalog * { cursor: grabbing !important; }
+
+/* ============================================================
+   BOTÓN BORRAR FONDO en tarjeta del catálogo
+   ============================================================ */
+.catalog-item .item-rmbg {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 22px;
+  height: 22px;
+  font-size: 12px;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.15s;
+}
+.catalog-item:hover .item-rmbg { display: flex; }
+.catalog-item .item-rmbg:hover { background: var(--coral-d); }
+
+/* ============================================================
+   MODAL — BORRADOR DE FONDO
+   ============================================================ */
+#bgModal {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bgm-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(3px);
+}
+
+.bgm-box {
+  position: relative;
+  background: var(--white);
+  border-radius: 16px;
+  padding: 24px;
+  width: min(520px, 95vw);
+  max-height: 92vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.28);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bgm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bgm-header h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.bgm-close {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  color: var(--gray-mid);
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+.bgm-close:hover { background: var(--gray-bg); color: var(--black); }
+
+.bgm-hint {
+  font-size: 13px;
+  color: var(--gray-mid);
+  line-height: 1.55;
+  background: #fffbf4;
+  border: 1px solid #f0e5cc;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+
+.bgm-controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.bgm-controls label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--black);
+  font-weight: 500;
+  flex: 1;
+  min-width: 180px;
+}
+
+.bgm-controls input[type="range"] {
+  flex: 1;
+  accent-color: var(--coral);
+  cursor: pointer;
+}
+
+.bgm-controls span {
+  min-width: 28px;
+  text-align: right;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--coral-d);
+}
+
+.bgm-btn-reset {
+  background: transparent;
+  border: 1px solid var(--gray-lt);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  color: var(--black);
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+.bgm-btn-reset:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+
+.bgm-canvas-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: repeating-conic-gradient(#e0e0e0 0% 25%, white 0% 50%) 0 0 / 16px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--gray-lt);
+  padding: 12px;
+  min-height: 80px;
+}
+
+#bgmCanvas {
+  max-width: 100%;
+  border-radius: 6px;
+  cursor: crosshair;
+  display: block;
+}
+
+.bgm-click-hint {
+  font-size: 11px;
+  color: var(--gray-mid);
+  text-align: center;
+}
+
+.bgm-footer {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.bgm-btn-cancel {
+  background: transparent;
+  border: 1px solid var(--gray-lt);
+  border-radius: 8px;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-family: var(--font-body);
+  cursor: pointer;
+  color: var(--gray-mid);
+  transition: all 0.15s;
+}
+.bgm-btn-cancel:hover { border-color: var(--black); color: var(--black); }
+
+.bgm-btn-apply {
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 8px;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.15s;
+}
+.bgm-btn-apply:hover { background: var(--coral-d); transform: translateY(-1px); }
+
+/* ============================================================
+   BADGE de almacenamiento guardado
+   ============================================================ */
+.storage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #5a9e6f;
+  background: #edfaf2;
+  border: 1px solid #b8e8c8;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-top: 6px;
+}
