@@ -1,0 +1,35 @@
+{
+"name": "Clothing Match ",
+
+  "short_name": "Clothing Match",
+
+  "start_url": "index.html",
+
+  "display": "standalone",
+
+  "icons": [
+
+    {
+
+      "src": "icono android192.png",
+
+      "sizes": "192x192",
+
+      "type": "image/png",
+
+      "purpose": "any maskable"
+
+    },
+
+    {
+
+      "src": "icono android150.png",
+
+      "sizes": "150x150",
+
+      "type": "image/png",
+
+      "purpose": "any maskable"
+    }
+  ]
+}
